@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<section class="contenedor-auth">
+    <h1>Crear Cuenta en RentaYa</h1>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="mensaje-error">@ViewBag.Error</p>
+    }
+
+    <p id="errorJs" class="mensaje-error"></p>
+
+    <form id="formRegistro" action='@Url.Action("Registro", "Account")' method="POST" class="formulario-auth" onsubmit="return validarRegistro()">
+        <div class="campo-form">
+            <input type="text" id="nombre" name="Nombre" placeholder="Nombre" />
+        </div>
+        <div class="campo-form">
+            <input type="text" id="apellido" name="Apellido" placeholder="Apellido" />
+        </div>
+        <div class="campo-form">
+            <input type="text" id="nombreUsuario" name="NombreUsuario" placeholder="Nombre de usuario" />
+        </div>
+        <div class="campo-form">
+            <input type="password" id="contrasena" name="Contrasena" placeholder="Contraseña" />
+        </div>
+        <button type="submit" class="btn-principal">Registrarme</button>
+    </form>
+
+    <p class="link-alternativo">
+        ¿Ya tenés cuenta? <a href='@Url.Action("Login", "Account")'>Iniciá sesión</a>
+    </p>
+</section>
+
+<script src="~/js/registro.js"></script>

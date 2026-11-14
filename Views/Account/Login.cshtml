@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<section class="contenedor-auth">
+    <h1>Iniciar Sesión en RentaYa</h1>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="mensaje-error">@ViewBag.Error</p>
+    }
+
+    <form action='@Url.Action("Login", "Account")' method="POST" class="formulario-auth">
+        <div class="campo-form">
+            <input type="text" name="nombreUsuario" placeholder="Nombre de usuario" />
+        </div>
+        <div class="campo-form">
+            <input type="password" name="contrasena" placeholder="Contraseña" />
+        </div>
+        <button type="submit" class="btn-principal">Ingresar</button>
+    </form>
+
+    <p class="link-alternativo">
+        ¿No tenés cuenta? <a href='@Url.Action("Registro", "Account")'>Registrate acá</a>
+    </p>
+</section>

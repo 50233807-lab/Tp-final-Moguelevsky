@@ -15,19 +15,6 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Session/2.3.14": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.Bcl.Cryptography/9.0.21": {
         "type": "package",
         "compile": {
@@ -368,19 +355,6 @@
         "lib/netstandard2.0/Dapper.dll",
         "lib/netstandard2.0/Dapper.xml",
         "readme.md"
-      ]
-    },
-    "Microsoft.AspNetCore.Session/2.3.14": {
-      "sha512": "zTs4rLrUw2ENjhiQa3cjYzSu7gLZlpYTCgHPAndbRDAAbFvIrocFFwWsTrpXmIH9kPIB2XNKq2HDqrgSNbLFfg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.session/2.3.14",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Session.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Session.xml",
-        "microsoft.aspnetcore.session.2.3.14.nupkg.sha512",
-        "microsoft.aspnetcore.session.nuspec"
       ]
     },
     "Microsoft.Bcl.Cryptography/9.0.21": {
@@ -829,7 +803,6 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "Dapper >= 2.1.89",
-      "Microsoft.AspNetCore.Session >= 2.3.14",
       "Microsoft.Data.SqlClient >= 7.1.2"
     ]
   },
@@ -886,10 +859,6 @@
           "Dapper": {
             "target": "Package",
             "version": "[2.1.89, )"
-          },
-          "Microsoft.AspNetCore.Session": {
-            "target": "Package",
-            "version": "[2.3.14, )"
           },
           "Microsoft.Data.SqlClient": {
             "target": "Package",
@@ -1332,17 +1301,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "PackageReference Microsoft.AspNetCore.Session will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "libraryId": "Microsoft.AspNetCore.Session",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  }
 }

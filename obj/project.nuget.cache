@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zCVgwmJH0yw=",
+  "dgSpecHash": "FzlFf4iKFd4=",
   "success": true,
   "projectFilePath": "C:\\Users\\mogue\\Downloads\\TP FINAL MOGUELEVSKY\\TP FINAL MOGUELEVSKY.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mogue\\.nuget\\packages\\dapper\\2.1.89\\dapper.2.1.89.nupkg.sha512",
-    "C:\\Users\\mogue\\.nuget\\packages\\microsoft.aspnetcore.session\\2.3.14\\microsoft.aspnetcore.session.2.3.14.nupkg.sha512",
     "C:\\Users\\mogue\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.21\\microsoft.bcl.cryptography.9.0.21.nupkg.sha512",
     "C:\\Users\\mogue\\.nuget\\packages\\microsoft.data.sqlclient\\7.1.2\\microsoft.data.sqlclient.7.1.2.nupkg.sha512",
     "C:\\Users\\mogue\\.nuget\\packages\\microsoft.data.sqlclient.extensions.abstractions\\7.1.2\\microsoft.data.sqlclient.extensions.abstractions.7.1.2.nupkg.sha512",
@@ -23,18 +22,5 @@
     "C:\\Users\\mogue\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.21\\system.security.cryptography.pkcs.9.0.21.nupkg.sha512",
     "C:\\Users\\mogue\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.21\\system.security.cryptography.protecteddata.9.0.21.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "message": "PackageReference Microsoft.AspNetCore.Session will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\Users\\mogue\\Downloads\\TP FINAL MOGUELEVSKY\\TP FINAL MOGUELEVSKY.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\mogue\\Downloads\\TP FINAL MOGUELEVSKY\\TP FINAL MOGUELEVSKY.csproj",
-      "libraryId": "Microsoft.AspNetCore.Session",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  "logs": []
 }
