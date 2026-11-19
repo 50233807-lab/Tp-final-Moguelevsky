@@ -56,7 +56,6 @@ C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\rjsmcshtml.dswa.
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\scopedcss\bundle\TP FINAL MOGUELEVSKY.styles.css
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\scopedcss\projectbundle\TP FINAL MOGUELEVSKY.bundle.scp.css
-C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\vvov7zc5q1-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\cpxhp527p7-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\gcpqaymf0i-{0}-jv28lumy19-jv28lumy19.gz
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\1g7dfic0x9-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
@@ -132,3 +131,5 @@ C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\refint\TP FINAL 
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\TP FINAL MOGUELEVSKY.pdb
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\TP FINAL MOGUELEVSKY.genruntimeconfig.cache
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\ref\TP FINAL MOGUELEVSKY.dll
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\vvov7zc5q1-{0}-re7yrkp5uj-re7yrkp5uj.gz
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\ld0u1yi38x-{0}-30ttoxkmxu-30ttoxkmxu.gz

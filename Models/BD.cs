@@ -43,4 +43,31 @@ public static class BD
             });
         }
     }
+        public static List<Equipo> ObtenerEquiposPaginados(int cantidadSaltar, int cantidadTraer)
+    {
+        List<Equipo> listaEquipos = new List<Equipo>();
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = @"SELECT E.Id, E.Nombre, E.Descripcion, E.Imagen, E.PrecioPorDia, E.IdCategoria, E.Activo, C.Nombre AS NombreCategoria
+                             FROM Equipos E
+                             INNER JOIN Categorias C ON E.IdCategoria = C.Id
+                             WHERE E.Activo = 1
+                             ORDER BY E.Id
+                             OFFSET @pSaltar ROWS FETCH NEXT @pTraer ROWS ONLY";
+            listaEquipos = connection.Query<Equipo>(query, new { pSaltar = cantidadSaltar, pTraer = cantidadTraer }).ToList();
+        }
+        return listaEquipos;
+    }
+
+    public static int ContarEquiposActivos()
+    {
+        int total = 0;
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "SELECT COUNT(*) FROM Equipos WHERE Activo = 1";
+            total = connection.QueryFirstOrDefault<int>(query);
+        }
+        return total;
+    }
+
 }

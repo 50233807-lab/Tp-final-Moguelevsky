@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TP_FINAL_MOGUELEVSKY.Models;
 
@@ -8,17 +8,33 @@ public class HomeController : Controller
 {
     public IActionResult Index()
     {
+        string idUsuario = HttpContext.Session.GetString("IdUsuario");
+        if (string.IsNullOrEmpty(idUsuario))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        List<Equipo> primerosEquipos = BD.ObtenerEquiposPaginados(0, 8);
+        int totalEquipos = BD.ContarEquiposActivos();
+
+        ViewBag.Equipos = primerosEquipos;
+        ViewBag.HayMas = totalEquipos > 8;
+
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult ObtenerMasEquipos(int saltar)
     {
-        return View();
-    }
+        string idUsuario = HttpContext.Session.GetString("IdUsuario");
+        if (string.IsNullOrEmpty(idUsuario))
+        {
+            return Unauthorized();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        List<Equipo> siguientesEquipos = BD.ObtenerEquiposPaginados(saltar, 8);
+        int totalEquipos = BD.ContarEquiposActivos();
+        bool hayMas = (saltar + siguientesEquipos.Count) < totalEquipos;
+
+        return Json(new { equipos = siguientesEquipos, hayMas = hayMas });
     }
 }

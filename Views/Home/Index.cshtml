@@ -1,8 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Catálogo - RentaYa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="barra-superior">
+    <h1>Catálogo de Equipos</h1>
+    <nav class="menu-usuario">
+        <a href='@Url.Action("MisAlquileres", "Home")' class="btn-secundario">Mis Alquileres</a>
+        <a href='@Url.Action("Logout", "Account")' class="btn-salir">Cerrar Sesión</a>
+    </nav>
+</section>
+
+<section id="grillaEquipos" class="grilla-equipos">
+    @foreach (Equipo item in ViewBag.Equipos)
+    {
+        <article class="tarjeta-equipo">
+            <a href='@Url.Action("Detalle", "Home", new { id = item.Id })'>
+                <img src="~/images/@item.Imagen" alt="@item.Nombre" />
+                <h3>@item.Nombre</h3>
+                <p>@item.NombreCategoria</p>
+            </a>
+        </article>
+    }
+</section>
+
+@if (ViewBag.HayMas == true)
+{
+    <div class="contenedor-ver-mas">
+        <button type="button" id="btnVerMas" class="btn-principal" onclick="cargarMasEquipos()">Ver más</button>
+    </div>
+}
+
+<script src="~/js/catalogo.js"></script>
