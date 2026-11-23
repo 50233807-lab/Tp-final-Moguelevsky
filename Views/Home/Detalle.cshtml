@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Detalle del Equipo - RentaYa";
+    Equipo eq = ViewBag.Equipo;
+}
+
+<header class="barra-superior">
+    <h1>RentaYa</h1>
+    <nav class="menu-usuario">
+        <a href='@Url.Action("Index", "Home")' class="btn-secundario">Volver al Catálogo</a>
+        <a href='@Url.Action("MisAlquileres", "Home")' class="btn-secundario">Mis Alquileres</a>
+        <a href='@Url.Action("Logout", "Account")' class="btn-salir">Cerrar Sesión</a>
+    </nav>
+</header>
+
+<main class="contenedor-detalle">
+    <section class="info-equipo">
+        <img src="~/imagenes/@eq.Imagen" alt="@eq.Nombre" />
+        <h2>@eq.Nombre</h2>
+        <p><strong>Categoría:</strong> @eq.NombreCategoria</p>
+        <p>@eq.Descripcion</p>
+        <p class="precio-dia">Precio por día: $@eq.PrecioPorDia</p>
+    </section>
+
+    <section class="caja-reserva">
+        <h3>Reservar este equipo</h3>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="mensaje-error">@ViewBag.Error</p>
+        }
+
+        <p id="mensajeCalculo" class="mensaje-error"></p>
+
+        <form action='@Url.Action("ConfirmarAlquiler", "Home")' method="POST" onsubmit="return validarFormularioReserva()">
+            <input type="hidden" id="idEquipo" name="idEquipo" value="@eq.Id" />
+
+            <div class="campo-form">
+                <label for="fechaInicio">Fecha de inicio:</label>
+                <input type="date" id="fechaInicio" name="fechaInicio" onchange="calcularConFetch()" />
+            </div>
+
+            <div class="campo-form">
+                <label for="fechaFin">Fecha de fin:</label>
+                <input type="date" id="fechaFin" name="fechaFin" onchange="calcularConFetch()" />
+            </div>
+
+            <div id="resumenCosto" class="resumen-costo">
+                <p id="textoDias"></p>
+                <p id="textoTotal"></p>
+            </div>
+
+            <button type="submit" id="btnConfirmar" class="btn-principal">Confirmar Alquiler</button>
+        </form>
+    </section>
+</main>
+
+<script src="~/js/detalle.js"></script>

@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Mis Alquileres - RentaYa";
+}
+
+<header class="barra-superior">
+    <h1>Mis Alquileres</h1>
+    <nav class="menu-usuario">
+        <a href='@Url.Action("Index", "Home")' class="btn-secundario">Volver al Catálogo</a>
+        <a href='@Url.Action("Logout", "Account")' class="btn-salir">Cerrar Sesión</a>
+    </nav>
+</header>
+
+<main class="lista-alquileres">
+    @foreach (Alquiler item in ViewBag.Alquileres)
+    {
+        <article class="tarjeta-alquiler">
+            <img src="~/imagenes/@item.ImagenEquipo" alt="@item.NombreEquipo" />
+            <div class="datos-alquiler">
+                <h3>@item.NombreEquipo</h3>
+                <p><strong>Desde:</strong> @item.FechaInicio.ToString("dd/MM/yyyy")</p>
+                <p><strong>Hasta:</strong> @item.FechaFin.ToString("dd/MM/yyyy")</p>
+                <p><strong>Total:</strong> $@item.Total</p>
+
+                @if (item.Cancelado)
+                {
+                    <p class="estado-cancelado">Estado: Cancelado</p>
+                }
+                else if (item.FechaInicio < DateTime.Today)
+                {
+                    <p class="estado-finalizado">Estado: Finalizado</p>
+                }
+                else
+                {
+                    <p class="estado-activo">Estado: Activo</p>
+                    <form action='@Url.Action("CancelarAlquiler", "Home")' method="POST">
+                        <input type="hidden" name="idAlquiler" value="@item.Id" />
+                        <button type="submit" class="btn-salir">Cancelar Alquiler</button>
+                    </form>
+                }
+            </div>
+        </article>
+    }
+</main>

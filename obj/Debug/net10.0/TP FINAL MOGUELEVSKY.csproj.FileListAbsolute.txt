@@ -131,5 +131,6 @@ C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\refint\TP FINAL 
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\TP FINAL MOGUELEVSKY.pdb
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\TP FINAL MOGUELEVSKY.genruntimeconfig.cache
 C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\ref\TP FINAL MOGUELEVSKY.dll
-C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\vvov7zc5q1-{0}-re7yrkp5uj-re7yrkp5uj.gz
-C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\ld0u1yi38x-{0}-30ttoxkmxu-30ttoxkmxu.gz
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\m3entgjyrz-{0}-lqgknqsoyb-lqgknqsoyb.gz
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\vvov7zc5q1-{0}-jwoz5155mq-jwoz5155mq.gz
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net10.0\compressed\ld0u1yi38x-{0}-k09zywgkph-k09zywgkph.gz

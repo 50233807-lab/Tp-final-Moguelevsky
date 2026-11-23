@@ -13,7 +13,7 @@ function cargarMasEquipos() {
                 grilla.innerHTML +=
                     '<article class="tarjeta-equipo">' +
                         '<a href="/Home/Detalle?id=' + eq.id + '">' +
-                            '<img src="/images/' + eq.imagen + '" alt="' + eq.nombre + '" />' +
+                            '<img src="/imagenes/' + eq.imagen + '" alt="' + eq.nombre + '" />' +
                             '<h3>' + eq.nombre + '</h3>' +
                             '<p>' + eq.nombreCategoria + '</p>' +
                         '</a>' +

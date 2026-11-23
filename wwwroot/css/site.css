@@ -94,3 +94,98 @@ body {
     margin: 20px auto;
     text-align: center;
 }
+.contenedor-detalle {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px;
+}
+
+.info-equipo, .caja-reserva {
+    width: 400px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.info-equipo img {
+    width: 100%;
+    height: 240px;
+    border-radius: 4px;
+}
+
+.precio-dia {
+    font-size: large;
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+.resumen-costo {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+.lista-alquileres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px;
+    justify-content: center;
+}
+
+.tarjeta-alquiler {
+    width: 320px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.tarjeta-alquiler img {
+    width: 100%;
+    height: 160px;
+    border-radius: 4px;
+}
+
+.estado-cancelado {
+    color: red;
+    font-weight: bold;
+}
+
+.estado-activo {
+    color: green;
+    font-weight: bold;
+}
+
+.estado-finalizado {
+    color: #7f8c8d;
+    font-weight: bold;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ecf0f1;
+    font-family: Arial;
+    color: #2C3E50;
+}
+
+.caja-reserva button {
+    margin-top: 10px;
+}
+
+.pie-pagina {
+    background-color: #2C3E50;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+
