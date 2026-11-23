@@ -32,6 +32,7 @@ GO
 
 CREATE TABLE Alquileres (
     Id INT PRIMARY KEY IDENTITY(1,1),
+<<<<<<< HEAD
     IdUsuario INT NOT NULL FOREIGN KEY REFERENCES Usuarios(Id),
     IdEquipo INT NOT NULL FOREIGN KEY REFERENCES Equipos(Id),
     FechaInicio DATE NOT NULL,
@@ -45,6 +46,18 @@ INSERT INTO Usuarios (NombreUsuario, Contrasena, Nombre, Apellido) VALUES
 ('matias', '1234', 'Matias', 'Moguelevsky');
 GO
 
+=======
+    IdEquipo INT NOT NULL FOREIGN KEY REFERENCES Equipos(Id),
+    IdUsuario INT NOT NULL FOREIGN KEY REFERENCES Usuarios(Id),
+    FechaRetiro DATE NOT NULL,
+    FechaDevolucion DATE NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    Cancelado BIT NOT NULL DEFAULT 0,
+    FechaCancelacion DATETIME NULL
+);
+GO
+
+>>>>>>> 0b635b3ae5ccb8a21210f8aa1ba8417681a0c172
 INSERT INTO Categorias (Nombre) VALUES ('Camaras'), ('Consolas'), ('Herramientas');
 GO
 
@@ -71,6 +84,7 @@ INSERT INTO Equipos (Nombre, Descripcion, Imagen, PrecioPorDia, IdCategoria, Act
 ('Lijadora Stanley', 'Lijadora orbital', 'herramienta6.jpg', 4000.00, 3, 1);
 GO
 
+<<<<<<< HEAD
 INSERT INTO Alquileres (IdUsuario, IdEquipo, FechaInicio, FechaFin, Total, Cancelado) VALUES
 (1, 1, '2026-10-01', '2026-10-03', 30000.00, 0),
 (1, 2, '2026-10-05', '2026-10-07', 36000.00, 1),
@@ -106,4 +120,108 @@ BEGIN
     SET Cancelado = 1
     WHERE Id = @pIdAlquiler AND IdUsuario = @pIdUsuario;
 END;
+=======
+CREATE PROCEDURE sp_Login
+    @NombreUsuario VARCHAR(50),
+    @Contrasena VARCHAR(50)
+AS
+BEGIN
+    SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND Contrasena = @Contrasena;
+END
+GO
+
+CREATE PROCEDURE sp_BuscarUsuarioPorNombre
+    @NombreUsuario VARCHAR(50)
+AS
+BEGIN
+    SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario;
+END
+GO
+
+CREATE PROCEDURE sp_RegistrarUsuario
+    @NombreUsuario VARCHAR(50),
+    @Contrasena VARCHAR(50),
+    @Nombre VARCHAR(50),
+    @Apellido VARCHAR(50)
+AS
+BEGIN
+    INSERT INTO Usuarios (NombreUsuario, Contrasena, Nombre, Apellido)
+    VALUES (@NombreUsuario, @Contrasena, @Nombre, @Apellido);
+END
+GO
+
+CREATE PROCEDURE sp_ObtenerEquiposPaginados
+    @Saltar INT,
+    @Traer INT
+AS
+BEGIN
+    SELECT E.Id, E.Nombre, E.Descripcion, E.Imagen, E.PrecioPorDia, E.IdCategoria, E.Activo, C.Nombre AS NombreCategoria
+    FROM Equipos E
+    INNER JOIN Categorias C ON E.IdCategoria = C.Id
+    WHERE E.Activo = 1
+    ORDER BY E.Id
+    OFFSET @Saltar ROWS FETCH NEXT @Traer ROWS ONLY;
+END
+GO
+
+CREATE PROCEDURE sp_ContarEquiposActivos
+AS
+BEGIN
+    SELECT COUNT(*) FROM Equipos WHERE Activo = 1;
+END
+GO
+
+CREATE PROCEDURE sp_ObtenerEquipoPorId
+    @Id INT
+AS
+BEGIN
+    SELECT E.Id, E.Nombre, E.Descripcion, E.Imagen, E.PrecioPorDia, E.IdCategoria, E.Activo, C.Nombre AS NombreCategoria
+    FROM Equipos E
+    INNER JOIN Categorias C ON E.IdCategoria = C.Id
+    WHERE E.Id = @Id AND E.Activo = 1;
+END
+GO
+
+CREATE PROCEDURE sp_BuscarAlquilerSuperpuesto
+    @IdEquipo INT,
+    @FechaRetiro DATE,
+    @FechaDevolucion DATE
+AS
+BEGIN
+    SELECT TOP 1 *
+    FROM Alquileres
+    WHERE IdEquipo = @IdEquipo
+      AND Cancelado = 0
+      AND @FechaRetiro <= FechaDevolucion
+      AND @FechaDevolucion >= FechaRetiro;
+END
+GO
+
+CREATE PROCEDURE sp_ContarCancelacionesMesActual
+    @IdUsuario INT,
+    @Mes INT,
+    @Anio INT
+AS
+BEGIN
+    SELECT COUNT(*)
+    FROM Alquileres
+    WHERE IdUsuario = @IdUsuario
+      AND Cancelado = 1
+      AND MONTH(FechaCancelacion) = @Mes
+      AND YEAR(FechaCancelacion) = @Anio;
+END
+GO
+
+CREATE PROCEDURE sp_InsertarAlquiler
+    @IdEquipo INT,
+    @IdUsuario INT,
+    @FechaRetiro DATE,
+    @FechaDevolucion DATE,
+    @Total DECIMAL(10,2)
+AS
+BEGIN
+    INSERT INTO Alquileres (IdEquipo, IdUsuario, FechaRetiro, FechaDevolucion, Total, Cancelado, FechaCancelacion)
+    VALUES (@IdEquipo, @IdUsuario, @FechaRetiro, @FechaDevolucion, @Total, 0, NULL);
+END
+>>>>>>> 0b635b3ae5ccb8a21210f8aa1ba8417681a0c172
 GO
