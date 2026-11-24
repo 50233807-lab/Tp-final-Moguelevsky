@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using TP_FINAL_MOGUELEVSKY.Models;
 
@@ -15,20 +16,19 @@ public class AccountController : Controller
     {
         if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contrasena))
         {
-            ViewBag.Error = "Debés completar usuario y contraseña.";
+            ViewBag.Error = "Completá usuario y contraseña.";
             return View();
         }
 
-        Usuario user = BD.Login(nombreUsuario, contrasena);
-
-        if (user == null)
+        Usuario usuario = BD.Login(nombreUsuario, contrasena);
+        if (usuario == null)
         {
             ViewBag.Error = "Usuario o contraseña incorrectos.";
             return View();
         }
 
-        HttpContext.Session.SetString("IdUsuario", user.Id.ToString());
-        HttpContext.Session.SetString("NombreUsuario", user.NombreUsuario);
+        HttpContext.Session.SetString("IdUsuario", usuario.Id.ToString());
+        HttpContext.Session.SetString("NombreUsuario", usuario.Nombre);
 
         return RedirectToAction("Index", "Home");
     }
@@ -39,25 +39,52 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult Registro(Usuario nuevoUsuario)
+    public IActionResult Registro(string nombreUsuario, string contrasena, string nombre, string apellido)
     {
-        if (string.IsNullOrEmpty(nuevoUsuario.NombreUsuario) ||
-            string.IsNullOrEmpty(nuevoUsuario.Contrasena) ||
-            string.IsNullOrEmpty(nuevoUsuario.Nombre) ||
-            string.IsNullOrEmpty(nuevoUsuario.Apellido))
+        if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contrasena) || string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido))
         {
             ViewBag.Error = "Todos los campos son obligatorios.";
             return View();
         }
 
-        Usuario usuarioExistente = BD.BuscarUsuarioPorNombre(nuevoUsuario.NombreUsuario);
-        if (usuarioExistente != null)
+        if (contrasena.Length < 8)
+        {
+            ViewBag.Error = "La contraseña debe tener al menos 8 caracteres.";
+            return View();
+        }
+
+        string caracteresEspeciales = "!@#$%^&*()_+-=[]{};':\"\\|,.<>/?";
+        bool tieneEspecial = false;
+
+        for (int i = 0; i < contrasena.Length; i++)
+        {
+            if (caracteresEspeciales.Contains(contrasena[i]))
+            {
+                tieneEspecial = true;
+                break;
+            }
+        }
+
+        if (!tieneEspecial)
+        {
+            ViewBag.Error = "La contraseña debe incluir al menos un carácter especial.";
+            return View();
+        }
+
+        if (BD.ExisteUsuario(nombreUsuario))
         {
             ViewBag.Error = "Ese nombre de usuario ya está en uso.";
             return View();
         }
 
+        Usuario nuevoUsuario = new Usuario();
+        nuevoUsuario.NombreUsuario = nombreUsuario;
+        nuevoUsuario.Contrasena = contrasena;
+        nuevoUsuario.Nombre = nombre;
+        nuevoUsuario.Apellido = apellido;
+
         BD.RegistrarUsuario(nuevoUsuario);
+
         return RedirectToAction("Login");
     }
 

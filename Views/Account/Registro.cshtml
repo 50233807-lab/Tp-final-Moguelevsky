@@ -1,36 +1,43 @@
 @{
-    ViewData["Title"] = "Registro";
+    ViewData["Title"] = "Registro - RentaYa";
 }
 
 <section class="contenedor-auth">
-    <h1>Crear Cuenta en RentaYa</h1>
+    <div class="caja-auth">
+        <h1>RentaYa</h1>
+        <h2>Crear Cuenta</h2>
 
-    @if (ViewBag.Error != null)
-    {
-        <p class="mensaje-error">@ViewBag.Error</p>
-    }
+        @if (ViewBag.Error != null)
+        {
+            <p class="mensaje-error">@ViewBag.Error</p>
+        }
 
-    <p id="errorJs" class="mensaje-error"></p>
+        <p id="mensajeError" class="mensaje-error"></p>
 
-    <form id="formRegistro" action='@Url.Action("Registro", "Account")' method="POST" class="formulario-auth" onsubmit="return validarRegistro()">
-        <div class="campo-form">
-            <input type="text" id="nombre" name="Nombre" placeholder="Nombre" />
-        </div>
-        <div class="campo-form">
-            <input type="text" id="apellido" name="Apellido" placeholder="Apellido" />
-        </div>
-        <div class="campo-form">
-            <input type="text" id="nombreUsuario" name="NombreUsuario" placeholder="Nombre de usuario" />
-        </div>
-        <div class="campo-form">
-            <input type="password" id="contrasena" name="Contrasena" placeholder="Contraseña" />
-        </div>
-        <button type="submit" class="btn-principal">Registrarme</button>
-    </form>
+        <form action='@Url.Action("Registro", "Account")' method="POST" onsubmit="return validarRegistro()">
+            <div class="campo-form">
+                <label for="nombreUsuario">Nombre de usuario</label>
+                <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Elegí un usuario" />
+            </div>
 
-    <p class="link-alternativo">
-        ¿Ya tenés cuenta? <a href='@Url.Action("Login", "Account")'>Iniciá sesión</a>
-    </p>
+            <div class="campo-form">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Mínimo 8 caracteres y 1 especial" />
+            </div>
+
+            <div class="campo-form">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" />
+            </div>
+
+            <div class="campo-form">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" />
+            </div>
+
+            <button type="submit" class="btn-principal">Registrarse</button>
+        </form>
+
+        <p>¿Ya tenés cuenta? <a href='@Url.Action("Login", "Account")'>Iniciá sesión acá</a></p>
+    </div>
 </section>
-
-<script src="~/js/registro.js"></script>

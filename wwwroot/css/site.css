@@ -1,41 +1,21 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #ecf0f1;
+    font-family: Arial;
+    color: #2C3E50;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
-}
 .barra-superior {
+    background-color: #2C3E50;
+    color: #ffffff;
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background-color: #2C3E50;
-    color: #ffffff;
 }
 
 .menu-usuario {
@@ -43,22 +23,92 @@ body {
     gap: 15px;
 }
 
+.btn-principal {
+    background-color: #3498DB;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 .btn-secundario {
-    padding: 8px 15px;
     background-color: #ffffff;
     color: #2C3E50;
-    border-radius: 4px;
+    padding: 8px 14px;
+    border-radius: 5px;
     font-weight: bold;
-    text-decoration: none;
 }
 
 .btn-salir {
-    padding: 8px 15px;
-    background-color: #c0392b;
+    background-color: #e74c3c;
     color: #ffffff;
-    border-radius: 4px;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
     font-weight: bold;
-    text-decoration: none;
+}
+
+.mensaje-error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contenedor-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+}
+
+.caja-auth {
+    width: 480px;
+    padding: 40px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.caja-auth h1 {
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+
+.caja-auth h2 {
+    font-size: x-large;
+    margin-bottom: 25px;
+}
+
+.campo-form {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.campo-form label {
+    display: block;
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.campo-form input {
+    width: 100%;
+    padding: 12px;
+    font-size: medium;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+}
+
+.caja-auth button {
+    width: 100%;
+    padding: 14px;
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .grilla-equipos {
@@ -70,7 +120,7 @@ body {
 }
 
 .tarjeta-equipo {
-    width: 240px;
+    width: 260px;
     border: 1px solid #cccccc;
     border-radius: 8px;
     padding: 15px;
@@ -80,20 +130,25 @@ body {
 
 .tarjeta-equipo img {
     width: 100%;
-    height: 160px;
+    height: 170px;
     border-radius: 4px;
 }
 
-.tarjeta-equipo a {
-    text-decoration: none;
+.tarjeta-equipo h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
     color: #2C3E50;
 }
 
-.contenedor-ver-mas {
-    width: 200px;
-    margin: 20px auto;
-    text-align: center;
+.tarjeta-equipo p {
+    color: #7f8c8d;
 }
+
+.contenedor-ver-mas {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .contenedor-detalle {
     display: flex;
     justify-content: center;
@@ -126,6 +181,10 @@ body {
     margin-bottom: 15px;
     font-weight: bold;
     color: #2C3E50;
+}
+
+.caja-reserva button {
+    margin-top: 10px;
 }
 
 .lista-alquileres {
@@ -165,20 +224,6 @@ body {
     color: #7f8c8d;
     font-weight: bold;
 }
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: #ecf0f1;
-    font-family: Arial;
-    color: #2C3E50;
-}
-
-.caja-reserva button {
-    margin-top: 10px;
-}
 
 .pie-pagina {
     background-color: #2C3E50;
@@ -187,5 +232,3 @@ body {
     padding: 15px;
     margin-top: 40px;
 }
-
-

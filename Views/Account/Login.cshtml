@@ -1,26 +1,31 @@
 @{
-    ViewData["Title"] = "Iniciar Sesión";
+    ViewData["Title"] = "Iniciar Sesión - RentaYa";
 }
 
 <section class="contenedor-auth">
-    <h1>Iniciar Sesión en RentaYa</h1>
+    <div class="caja-auth">
+        <h1>RentaYa</h1>
+        <h2>Iniciar Sesión</h2>
 
-    @if (ViewBag.Error != null)
-    {
-        <p class="mensaje-error">@ViewBag.Error</p>
-    }
+        @if (ViewBag.Error != null)
+        {
+            <p class="mensaje-error">@ViewBag.Error</p>
+        }
 
-    <form action='@Url.Action("Login", "Account")' method="POST" class="formulario-auth">
-        <div class="campo-form">
-            <input type="text" name="nombreUsuario" placeholder="Nombre de usuario" />
-        </div>
-        <div class="campo-form">
-            <input type="password" name="contrasena" placeholder="Contraseña" />
-        </div>
-        <button type="submit" class="btn-principal">Ingresar</button>
-    </form>
+        <form action='@Url.Action("Login", "Account")' method="POST">
+            <div class="campo-form">
+                <label for="nombreUsuario">Nombre de usuario</label>
+                <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Ingresá tu usuario" />
+            </div>
 
-    <p class="link-alternativo">
-        ¿No tenés cuenta? <a href='@Url.Action("Registro", "Account")'>Registrate acá</a>
-    </p>
+            <div class="campo-form">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Ingresá tu contraseña" />
+            </div>
+
+            <button type="submit" class="btn-principal">Ingresar</button>
+        </form>
+
+        <p>¿No tenés cuenta? <a href='@Url.Action("Registro", "Account")'>Registrate acá</a></p>
+    </div>
 </section>

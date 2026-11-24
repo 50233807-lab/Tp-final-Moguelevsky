@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-=======
 using System;
 using System.Collections.Generic;
->>>>>>> 0b635b3ae5ccb8a21210f8aa1ba8417681a0c172
 using System.Data;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using Dapper;
 
@@ -11,66 +9,59 @@ namespace TP_FINAL_MOGUELEVSKY.Models;
 
 public static class BD
 {
-    private static string _connectionString = @"Server=localhost;DataBase=RentaYa;Integrated Security=True;TrustServerCertificate=True;";
+    private static string _connectionString = @"Server=localhost\SQLEXPRESS;DataBase=RentaYa;Integrated Security=True;TrustServerCertificate=True;";
 
     public static Usuario Login(string nombreUsuario, string contrasena)
     {
         Usuario usuarioEncontrado = null;
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            usuarioEncontrado = connection.QueryFirstOrDefault<Usuario>(
-                "sp_Login",
-                new { NombreUsuario = nombreUsuario, Contrasena = contrasena },
-                commandType: CommandType.StoredProcedure
-            );
+            string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @pUsuario AND Contrasena = @pContrasena";
+            usuarioEncontrado = connection.QueryFirstOrDefault<Usuario>(query, new { pUsuario = nombreUsuario, pContrasena = contrasena });
         }
         return usuarioEncontrado;
     }
 
-    public static Usuario BuscarUsuarioPorNombre(string nombreUsuario)
+    public static bool ExisteUsuario(string nombreUsuario)
     {
-        Usuario usuarioEncontrado = null;
+        int cantidad = 0;
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            usuarioEncontrado = connection.QueryFirstOrDefault<Usuario>(
-                "sp_BuscarUsuarioPorNombre",
-                new { NombreUsuario = nombreUsuario },
-                commandType: CommandType.StoredProcedure
-            );
+            string query = "SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @pUsuario";
+            cantidad = connection.QueryFirstOrDefault<int>(query, new { pUsuario = nombreUsuario });
         }
-        return usuarioEncontrado;
+        return cantidad > 0;
     }
 
     public static void RegistrarUsuario(Usuario nuevoUsuario)
     {
+        string query = "INSERT INTO Usuarios (NombreUsuario, Contrasena, Nombre, Apellido) VALUES (@pUsuario, @pContrasena, @pNombre, @pApellido)";
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            connection.Execute(
-                "sp_RegistrarUsuario",
-                new
-                {
-                    NombreUsuario = nuevoUsuario.NombreUsuario,
-                    Contrasena = nuevoUsuario.Contrasena,
-                    Nombre = nuevoUsuario.Nombre,
-                    Apellido = nuevoUsuario.Apellido
-                },
-                commandType: CommandType.StoredProcedure
-            );
+            connection.Execute(query, new
+            {
+                pUsuario = nuevoUsuario.NombreUsuario,
+                pContrasena = nuevoUsuario.Contrasena,
+                pNombre = nuevoUsuario.Nombre,
+                pApellido = nuevoUsuario.Apellido
+            });
         }
     }
 
-    public static IEnumerable<Equipo> ObtenerEquiposPaginados(int cantidadSaltar, int cantidadTraer)
+    public static List<Equipo> ObtenerEquiposPaginados(int cantidadSaltar, int cantidadTraer)
     {
-        IEnumerable<Equipo> listaEquipos = null;
+        List<Equipo> lista = new List<Equipo>();
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            listaEquipos = connection.Query<Equipo>(
-                "sp_ObtenerEquiposPaginados",
-                new { Saltar = cantidadSaltar, Traer = cantidadTraer },
-                commandType: CommandType.StoredProcedure
-            );
+            string query = @"SELECT E.Id, E.Nombre, E.Descripcion, E.Imagen, E.PrecioPorDia, E.IdCategoria, E.Activo, C.Nombre AS NombreCategoria
+                             FROM Equipos E
+                             INNER JOIN Categorias C ON E.IdCategoria = C.Id
+                             WHERE E.Activo = 1
+                             ORDER BY E.Id
+                             OFFSET @pSaltar ROWS FETCH NEXT @pTraer ROWS ONLY";
+            lista = connection.Query<Equipo>(query, new { pSaltar = cantidadSaltar, pTraer = cantidadTraer }).ToList();
         }
-        return listaEquipos;
+        return lista;
     }
 
     public static int ContarEquiposActivos()
@@ -78,14 +69,13 @@ public static class BD
         int total = 0;
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            total = connection.QueryFirstOrDefault<int>(
-                "sp_ContarEquiposActivos",
-                commandType: CommandType.StoredProcedure
-            );
+            string query = "SELECT COUNT(*) FROM Equipos WHERE Activo = 1";
+            total = connection.QueryFirstOrDefault<int>(query);
         }
         return total;
     }
-        public static Equipo ObtenerEquipoPorId(int idEquipo)
+
+    public static Equipo ObtenerEquipoPorId(int idEquipo)
     {
         Equipo equipo = null;
         using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -178,68 +168,6 @@ public static class BD
             connection.Execute(
                 "sp_CancelarAlquiler",
                 new { pIdAlquiler = idAlquiler, pIdUsuario = idUsuario },
-                commandType: CommandType.StoredProcedure
-            );
-        }
-    }
-
-
-    public static Equipo ObtenerEquipoPorId(int idEquipo)
-    {
-        Equipo equipoEncontrado = null;
-        using (SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            equipoEncontrado = connection.QueryFirstOrDefault<Equipo>(
-                "sp_ObtenerEquipoPorId",
-                new { Id = idEquipo },
-                commandType: CommandType.StoredProcedure
-            );
-        }
-        return equipoEncontrado;
-    }
-
-    public static Alquiler BuscarAlquilerSuperpuesto(int idEquipo, DateTime fechaRetiro, DateTime fechaDevolucion)
-    {
-        Alquiler alquilerEncontrado = null;
-        using (SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            alquilerEncontrado = connection.QueryFirstOrDefault<Alquiler>(
-                "sp_BuscarAlquilerSuperpuesto",
-                new { IdEquipo = idEquipo, FechaRetiro = fechaRetiro, FechaDevolucion = fechaDevolucion },
-                commandType: CommandType.StoredProcedure
-            );
-        }
-        return alquilerEncontrado;
-    }
-
-    public static int ContarCancelacionesMesActual(int idUsuario, int mes, int anio)
-    {
-        int cantidadCancelaciones = 0;
-        using (SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            cantidadCancelaciones = connection.QueryFirstOrDefault<int>(
-                "sp_ContarCancelacionesMesActual",
-                new { IdUsuario = idUsuario, Mes = mes, Anio = anio },
-                commandType: CommandType.StoredProcedure
-            );
-        }
-        return cantidadCancelaciones;
-    }
-
-    public static void InsertarAlquiler(Alquiler nuevoAlquiler)
-    {
-        using (SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            connection.Execute(
-                "sp_InsertarAlquiler",
-                new
-                {
-                    IdEquipo = nuevoAlquiler.IdEquipo,
-                    IdUsuario = nuevoAlquiler.IdUsuario,
-                    FechaRetiro = nuevoAlquiler.FechaRetiro,
-                    FechaDevolucion = nuevoAlquiler.FechaDevolucion,
-                    Total = nuevoAlquiler.Total
-                },
                 commandType: CommandType.StoredProcedure
             );
         }
