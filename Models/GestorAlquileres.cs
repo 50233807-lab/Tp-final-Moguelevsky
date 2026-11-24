@@ -7,20 +7,21 @@ public static class GestorAlquileres
     public static string ValidarReserva(int idUsuario, int idEquipo, DateTime fechaInicio, DateTime fechaFin)
     {
         DateTime hoy = DateTime.Today;
+        DateTime limite14Dias = hoy.AddDays(14);
 
         if (fechaInicio < hoy)
         {
-            return "La fecha de inicio no puede ser anterior a hoy.";
+            return "No podés alquilar en una fecha anterior a hoy.";
         }
 
         if (fechaFin < fechaInicio)
         {
-            return "La fecha de fin no puede ser menor a la fecha de inicio.";
+            return "La fecha de fin no puede ser anterior a la fecha de inicio.";
         }
 
-        if (fechaInicio > hoy.AddDays(14))
+        if (fechaInicio > limite14Dias || fechaFin > limite14Dias)
         {
-            return "Solo podés reservar dentro de los próximos 14 días.";
+            return "Solo se puede alquilar un equipo para los próximos 14 días.";
         }
 
         int dias = (fechaFin - fechaInicio).Days + 1;
@@ -32,13 +33,13 @@ public static class GestorAlquileres
         int cancelaciones = BD.ContarCancelacionesMesActual(idUsuario);
         if (cancelaciones >= 2)
         {
-            return "Ya tenés 2 cancelaciones este mes y no podés realizar nuevas reservas.";
+            return "Ya cancelaste 2 alquileres este mes. No podés volver a alquilar hasta el mes siguiente.";
         }
 
         int superpuestos = BD.ContarAlquileresSuperpuestos(idEquipo, fechaInicio, fechaFin);
         if (superpuestos > 0)
         {
-            return "El equipo no está disponible en esas fechas.";
+            return "El equipo no está disponible porque ya está alquilado en esas fechas.";
         }
 
         return "";
