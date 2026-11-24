@@ -143,3 +143,16 @@ C:\Users\50233807\Downloads\Nueva carpeta\Tp-final-Moguelevsky\obj\Debug\net9.0\
 C:\Users\50233807\Downloads\Nueva carpeta\Tp-final-Moguelevsky\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.pdb
 C:\Users\50233807\Downloads\Nueva carpeta\Tp-final-Moguelevsky\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.genruntimeconfig.cache
 C:\Users\50233807\Downloads\Nueva carpeta\Tp-final-Moguelevsky\obj\Debug\net9.0\ref\TP FINAL MOGUELEVSKY.dll
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.csproj.AssemblyReference.cache
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.AssemblyInfoInputs.cache
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.AssemblyInfo.cs
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.csproj.CoreCompileInputs.cache
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.RazorAssemblyInfo.cache
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.RazorAssemblyInfo.cs
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.sourcelink.json
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.dll
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\refint\TP FINAL MOGUELEVSKY.dll
+C:\Users\mogue\Downloads\TP FINAL MOGUELEVSKY\obj\Debug\net9.0\TP FINAL MOGUELEVSKY.pdb

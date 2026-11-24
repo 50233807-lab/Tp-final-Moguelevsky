@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP FINAL MOGUELEVSKY")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d819a4764ea9f9ce4b0b489221b4fd7adcd449b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac3830c1548b35ed59dbc4479e3a7a8faf1e1fb8")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP FINAL MOGUELEVSKY")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP FINAL MOGUELEVSKY")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
